@@ -18,3 +18,14 @@ Each lesson = short explanation + something to play with + a small quiz.
 | 11 | Studio | Put everything together | Full 4-bar loop editor, autosave, MIDI download | – |
 
 Plus a searchable word list (glossary).
+
+## Level up (advanced)
+
+Goal: make drums, bass and melody sound alive and cool, not just "correct".
+
+| # | Lesson | What you learn | Interactive part | Quiz |
+|---|--------|----------------|------------------|------|
+| 12 | Cool Drums | Accents and ghost notes, syncopation, swing, style grooves (house, breakbeat, drum & bass, half-time, lo-fi, reggaeton, rhythm game rush), fills, build-up and drop | Robot vs human switch, on/between the beat switch, swing slider, editable groove grid with loud/normal/soft hits, 4-bar fill player, 8-bar build-up → drop | Which groove? |
+| 13 | Cool Melodies | Motifs and how to change them, question and answer, chord notes vs passing notes, pushed (early) notes, one tune in many moods, the high point | Motif builder (bar 1 + moves for bars 2-4), answer picker, passing-note switch, straight/pushed switch, mood machine | What happened to the motif? |
+| 14 | Cool Bass Lines | Bass styles (disco octaves, off-beat, walking, funk, chiptune, pushed, half-time), teaming up with the kick, lead-in notes, arriving early | Style gallery with kick lane, follow/fill-gaps/ignore the kick, lead-in picker, on time/early switch, bass editor with Next and Lead-in rows | Which bass style? |
+| 15 | Remix Lab | Combine groove, fill, bass style and motif into one loop | Recipes (rhythm game chorus, battle, cafe, boss drop) and every part editable | – |

@@ -301,3 +301,63 @@ export class StepClock {
     }
   }
 }
+
+/** Extra drum sounds for the advanced lessons. The basic 4 drums go through playDrum. */
+export type KitSound = Drum | 'openhat' | 'tomHi' | 'tomLo' | 'crash' | 'rim';
+
+export const KIT: { id: KitSound; name: string; plain: string }[] = [
+  { id: 'kick', name: 'Kick', plain: 'The big low "boom".' },
+  { id: 'snare', name: 'Snare', plain: 'The sharp "tak".' },
+  { id: 'clap', name: 'Clap', plain: 'A hand clap.' },
+  { id: 'hat', name: 'Hi-hat', plain: 'The tiny closed "tss".' },
+  { id: 'openhat', name: 'Open hat', plain: 'A longer "tssshh". Gives a lift between kicks.' },
+  { id: 'rim', name: 'Rim', plain: 'A small wooden "tok". Quiet and dry.' },
+  { id: 'tomHi', name: 'Tom high', plain: 'A drum with a pitch: "dom". Used in fills.' },
+  { id: 'tomLo', name: 'Tom low', plain: 'A deeper "doom". Used in fills.' },
+  { id: 'crash', name: 'Crash', plain: 'The big "KSHHH" that says: a new part starts now!' },
+];
+
+export function playKit(sound: KitSound, time?: number, volume = 1) {
+  if (sound === 'kick' || sound === 'snare' || sound === 'clap' || sound === 'hat') return playDrum(sound, time, volume);
+  const { ctx, out } = audio();
+  const t = Math.max(time ?? ctx.currentTime, ctx.currentTime);
+  const amp = ctx.createGain();
+  amp.connect(out);
+  if (sound === 'tomHi' || sound === 'tomLo') {
+    const o = ctx.createOscillator();
+    const f = sound === 'tomHi' ? 210 : 120;
+    o.frequency.setValueAtTime(f, t);
+    o.frequency.exponentialRampToValueAtTime(f * 0.55, t + 0.25);
+    amp.gain.setValueAtTime(0.7 * volume, t);
+    amp.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+    o.connect(amp);
+    o.start(t);
+    o.stop(t + 0.4);
+    return;
+  }
+  if (sound === 'rim') {
+    const o = ctx.createOscillator();
+    o.type = 'square';
+    o.frequency.value = 820;
+    const bp = ctx.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.frequency.value = 1700;
+    amp.gain.setValueAtTime(0.35 * volume, t);
+    amp.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+    o.connect(bp).connect(amp);
+    o.start(t);
+    o.stop(t + 0.06);
+    return;
+  }
+  const n = noise(ctx);
+  const hp = ctx.createBiquadFilter();
+  hp.type = 'highpass';
+  hp.frequency.value = sound === 'crash' ? 4000 : 6500;
+  n.connect(hp).connect(amp);
+  const len = sound === 'crash' ? 1.4 : 0.28;
+  amp.gain.setValueAtTime((sound === 'crash' ? 0.35 : 0.22) * volume, t);
+  amp.gain.exponentialRampToValueAtTime(0.001, t + len);
+  n.loop = true;
+  n.start(t);
+  n.stop(t + len + 0.02);
+}

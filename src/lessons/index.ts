@@ -10,6 +10,10 @@ import L7Melody from './L7Melody';
 import L8Structure from './L8Structure';
 import L9Moods from './L9Moods';
 import L10Studio from './L10Studio';
+import LAdvDrums from './LAdvDrums';
+import LAdvMelody from './LAdvMelody';
+import LAdvBass from './LAdvBass';
+import LAdvLab from './LAdvLab';
 
 export interface Lesson {
   id: string;
@@ -32,4 +36,8 @@ export const LESSONS: Lesson[] = [
   { id: 'structure', title: 'Song Structure & Loops', short: 'Intro, verse, build-up, drop, looping BGM', emoji: '🧱', unit: 'Composing', Component: L8Structure },
   { id: 'moods', title: 'Game Music Recipes', short: 'Battle, town, boss, sad scene...', emoji: '🎮', unit: 'Game music', Component: L9Moods },
   { id: 'studio', title: 'Studio: Make Your Loop', short: 'Combine everything and export MIDI', emoji: '🎛️', unit: 'Game music', Component: L10Studio },
+  { id: 'cool-drums', title: 'Cool Drums', short: 'Loud and soft hits, grooves, fills, build-up and drop', emoji: '🔥', unit: 'Level up', Component: LAdvDrums },
+  { id: 'cool-melody', title: 'Cool Melodies', short: 'Motifs, question and answer, pushed notes, moods', emoji: '✨', unit: 'Level up', Component: LAdvMelody },
+  { id: 'cool-bass', title: 'Cool Bass Lines', short: 'Octaves, team up with the kick, walk into chords', emoji: '⚡', unit: 'Level up', Component: LAdvBass },
+  { id: 'remix-lab', title: 'Remix Lab', short: 'Mix grooves, bass styles and motifs into one chorus', emoji: '🧪', unit: 'Level up', Component: LAdvLab },
 ];
