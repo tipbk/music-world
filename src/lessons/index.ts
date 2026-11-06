@@ -5,6 +5,7 @@ import L3Drums from './L3Drums';
 import L4Scales from './L4Scales';
 import L5Chords from './L5Chords';
 import L6Progressions from './L6Progressions';
+import LBass from './LBass';
 import L7Melody from './L7Melody';
 import L8Structure from './L8Structure';
 import L9Moods from './L9Moods';
@@ -26,6 +27,7 @@ export const LESSONS: Lesson[] = [
   { id: 'scales', title: 'Scales & Keys', short: 'Your color palette: happy, sad, dark', emoji: '🎨', unit: 'Harmony', Component: L4Scales },
   { id: 'chords', title: 'Chords', short: 'Notes played together', emoji: '🎼', unit: 'Harmony', Component: L5Chords },
   { id: 'progressions', title: 'Chord Progressions', short: '4 chords that tell a story', emoji: '🔁', unit: 'Harmony', Component: L6Progressions },
+  { id: 'bass', title: 'Bass Lines', short: 'The low notes that give music power', emoji: '🎸', unit: 'Harmony', Component: LBass },
   { id: 'melody', title: 'Melody', short: 'Write the tune players remember', emoji: '🎤', unit: 'Composing', Component: L7Melody },
   { id: 'structure', title: 'Song Structure & Loops', short: 'Intro, verse, build-up, drop, looping BGM', emoji: '🧱', unit: 'Composing', Component: L8Structure },
   { id: 'moods', title: 'Game Music Recipes', short: 'Battle, town, boss, sad scene...', emoji: '🎮', unit: 'Game music', Component: L9Moods },

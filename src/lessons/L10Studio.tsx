@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { playChord } from '../audio/engine';
 import { chordOnDegree, HARMONY_SCALES, tonicFor } from '../music/theory';
-import { DRUM_PRESETS, drumPreset, Song } from '../music/song';
+import { BASS_PATTERNS, DRUM_PRESETS, drumPreset, Song } from '../music/song';
 import { RECIPES } from '../music/recipes';
 import { downloadMidi } from '../music/midi';
 import { ChordStrip, useSong } from '../components/SongPlayer';
@@ -112,9 +112,15 @@ export default function L10Studio() {
               { value: 'arp', label: 'Arpeggio' },
             ]}
           />
-          <label className="check">
-            <input type="checkbox" checked={song.bass} onChange={(e) => set({ bass: e.target.checked })} /> Bass line
-          </label>
+          <Select
+            label="Bass line"
+            value={song.bass ? (BASS_PATTERNS.find((p) => p.line === (song.bassLine ?? BASS_PATTERNS[0].line))?.id ?? 'basic') : 'off'}
+            onChange={(id) => {
+              const p = BASS_PATTERNS.find((x) => x.id === id);
+              set(p ? { bass: true, bassLine: p.line } : { bass: false });
+            }}
+            options={[{ value: 'off', label: 'No bass' }, ...BASS_PATTERNS.map((p) => ({ value: p.id, label: p.name }))]}
+          />
         </div>
       </Section>
 
