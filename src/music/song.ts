@@ -15,7 +15,33 @@ export interface Song {
   melodyInstrument: Instrument;
   chordStyle: ChordStyle;
   bass: boolean;
+  bassLine?: string; // 16 characters, see BASS_PATTERNS. Missing = 'basic'.
   mute?: Partial<Record<'drums' | 'chords' | 'bass' | 'melody', boolean>>;
+}
+
+/**
+ * Bass lines are 16 boxes (one bar). Letters say which note of the current chord to play:
+ * R = root (the chord's name note), 3 = third, 5 = fifth, O = root one octave up,
+ * "-" = keep holding the note before, "." = silence.
+ */
+export const BASS_PATTERNS: { id: string; name: string; line: string; plain: string }[] = [
+  { id: 'basic', name: 'Simple Pop', line: 'R-----..R-----R-', plain: 'Root note on beat 1 and 3, with a tiny pickup at the end. Safe for anything.' },
+  { id: 'whole', name: 'Long Notes', line: 'R---------------', plain: 'One long note per chord. Calm, big, emotional.' },
+  { id: 'eighths', name: 'Rock Pulse', line: 'R-R-R-R-R-R-R-R-', plain: 'Root note on every half beat. Drives the song forward like rock music.' },
+  { id: 'octave', name: 'Octave Bounce (EDM / Disco)', line: 'R-O-R-O-R-O-R-O-', plain: 'Jumps between low and high root. Super bouncy, great for dance and rhythm games.' },
+  { id: 'offbeat', name: 'Off-beat (EDM)', line: '..R-..R-..R-..R-', plain: 'Plays BETWEEN the kicks. Kick and bass take turns: boom-WOM, boom-WOM.' },
+  { id: 'rootfifth', name: 'Town Bounce', line: 'R---5---R---5---', plain: 'Root, then fifth, back and forth. Cute and simple, like a walking village tune.' },
+  { id: 'gallop', name: 'Battle Gallop', line: 'R-RRR-RRR-RRR-RR', plain: 'A galloping horse rhythm. Feels urgent and heroic.' },
+  { id: 'walk', name: 'Walking Up', line: 'R---3---5---O---', plain: 'Climbs up through the chord. Smooth and moving.' },
+  { id: 'kick', name: 'Follow the Kick', line: 'kick', plain: 'Plays wherever the kick drum plays. Makes the drums and bass feel like one big punch.' },
+];
+
+export function bassNote(chordNotes: number[], c: string) {
+  const root = chordNotes[0] - 24;
+  if (c === '3') return chordNotes[1] - 24;
+  if (c === '5') return chordNotes[2] - 24;
+  if (c === 'O') return root + 12;
+  return root;
 }
 
 export const MELODY_ROWS = 10; // home note up to a bit past the octave
@@ -120,9 +146,14 @@ export function eventsAtStep(song: Song, s: number): { notes: NoteEvent[]; drums
     }
   }
 
-  if (song.bass && !mute.bass && (inBar === 0 || inBar === 8 || inBar === 14)) {
-    const root = chord.root - 24;
-    notes.push({ kind: 'bass', midi: root, step: s, len: inBar === 14 ? 2 : 6 });
+  if (song.bass && !mute.bass) {
+    const line = song.bassLine === 'kick' ? song.drums.kick.map((k) => (k ? 'R' : '.')).join('') : song.bassLine ?? BASS_PATTERNS[0].line;
+    const c = line[inBar];
+    if (c && c !== '.' && c !== '-') {
+      let len = 1;
+      while (inBar + len < 16 && line[inBar + len] === '-') len++;
+      notes.push({ kind: 'bass', midi: bassNote(chord.notes, c), step: s, len: song.bassLine === 'kick' ? 2 : len });
+    }
   }
 
   if (!mute.melody && s % 2 === 0) {

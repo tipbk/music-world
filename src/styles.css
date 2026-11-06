@@ -239,6 +239,18 @@ th { color: var(--muted); font-weight: 600; }
 .mini-pad.sel { background: var(--accent); }
 .mini-pad.sel small { color: #fff; }
 
+/* Bass */
+.bass-boxes { display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin: 12px 0; }
+.bass-boxes span {
+  height: 34px; border-radius: 5px; background: #262a4e; display: grid; place-items: center; font-weight: 800; font-size: 0.85rem;
+}
+.bass-boxes span.beat { background: #30355f; }
+.bass-boxes span.hit { background: var(--pink); color: #fff; }
+.bass-boxes span.hold { background: rgba(255, 92, 154, 0.4); border-radius: 0; }
+.bass-boxes span.now { outline: 2px solid var(--accent2); }
+.bass-roots { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.bass-roots .btn { justify-content: center; }
+
 /* Structure */
 .section-legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
 .legend-item {

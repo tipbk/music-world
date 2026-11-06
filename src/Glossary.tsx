@@ -3,7 +3,8 @@ import { useState } from 'react';
 const WORDS: [string, string][] = [
   ['Arpeggio', 'Playing the notes of a chord one at a time instead of together. Very common in game music.'],
   ['Bar (Measure)', 'A group of beats, usually 4. Music is counted "1 2 3 4, 1 2 3 4".'],
-  ['Bass', 'The lowest part of the music. Gives power and weight. Usually plays the root of each chord.'],
+  ['Bass', 'The lowest part of the music. Gives power and weight. Usually plays the root of each chord. See the Bass Lines lesson.'],
+  ['Bass line', 'The notes and rhythm the bass plays. Often just the root of each chord with a groovy rhythm.'],
   ['Beat', 'The steady pulse you tap your foot to.'],
   ['BGM', 'Background music. Music that plays behind the gameplay, often looping.'],
   ['BPM', 'Beats Per Minute. How fast the music is. 120 BPM = 2 beats per second.'],
@@ -26,6 +27,7 @@ const WORDS: [string, string][] = [
   ['Note', 'One single sound with a pitch.'],
   ['Octave', 'The distance from one note to the next note with the same name. Sounds "the same, but higher".'],
   ['Pentatonic', 'A 5-note scale with no clashing notes. Easy to make melodies that sound good.'],
+  ['Pickup', 'A short note played just before a beat, leading into it. Makes bass lines and melodies groove.'],
   ['Pitch', 'How high or low a note is.'],
   ['Roman numerals', 'Names for chords by their position in the key: I, ii, iii, IV, V, vi, vii°. Big = major, small = minor.'],
   ['Root', 'The note a chord is built on and named after. The root of C major is C.'],
