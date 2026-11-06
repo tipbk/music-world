@@ -322,3 +322,32 @@ th { color: var(--muted); font-weight: 600; }
 .glossary > div { background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
 .glossary dt { font-weight: 800; color: var(--accent2); }
 .glossary dd { margin: 0; }
+
+/* Level Up lessons */
+.cell.accent { background: var(--pink); box-shadow: 0 0 12px rgba(255, 92, 154, 0.8); color: #fff; font-weight: 900; font-size: 0.8rem; }
+.cell.ghost { background: rgba(124, 92, 255, 0.4); }
+.cell.accent.now, .cell.ghost.now { background: var(--accent2); }
+.cell:disabled { cursor: default; }
+.legend { font-size: 0.85rem; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: middle; }
+.swatch.accent { background: var(--pink); }
+.swatch.on { background: var(--accent); }
+.swatch.ghost { background: rgba(124, 92, 255, 0.4); }
+.lanes { min-width: 0; margin: 12px 0; }
+.lane { display: grid; grid-template-columns: 48px 1fr; gap: 8px; align-items: center; }
+.lane .bass-boxes { margin: 4px 0; }
+.lane-label { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+.kick-boxes span { height: 20px; }
+.kick-boxes span.hit { background: var(--accent); }
+.bass-boxes span.leadin { background: var(--gold); color: #2a1a00; }
+.ab-switch { display: inline-flex; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.ab-switch .btn { border-radius: 0; border: 0; }
+.bar-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.build-meter { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin: 12px 0; }
+.build-meter span {
+  border-radius: 8px; background: var(--card2); color: var(--muted); font-size: 0.72rem; font-weight: 700; display: flex;
+  align-items: flex-end; justify-content: center; padding: 4px 2px; min-height: 70px; text-align: center; position: relative;
+}
+.build-meter span.now { outline: 3px solid #fff; color: #fff; }
+.build-meter span.drop { background: linear-gradient(0deg, var(--pink), var(--accent)); color: #fff; }
+.gold { color: var(--gold); font-weight: 700; }
